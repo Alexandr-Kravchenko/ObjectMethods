@@ -13,7 +13,7 @@ class Task {
     }
     toString () { 
         let done = this.done === true ? '[x]' : '[ ]';
-        let formatedDate = this.dueDate !== undefined ? `${month[this.dueDate.getMonth()]} ${this.dueDate.getDate()} ${this.dueDate.getFullYear()}` : ' '; 
+        let formatedDate = this.dueDate !== undefined ? `${month[this.dueDate.getMonth()]} ${this.dueDate.getDate()} ${this.dueDate.getFullYear()}` : ' ';
         
         if(this.desc === undefined || this.desc === '') {
             if(this.dueDate === undefined || this.dueDate === '') {
@@ -37,20 +37,19 @@ class Task {
     }
     postPone (timeSpan) {
         let due = this.dueDate;
+        let data = {
+            days: timeSpan.days !== undefined ? timeSpan.days : 0,
+            months: timeSpan.months !== undefined ? timeSpan.months : 0,
+            years: timeSpan.years !== undefined ? timeSpan.years : 0,
+            hours: timeSpan.hours !== undefined ? timeSpan.hours : 0,
+            minutes: timeSpan.minutes !== undefined ? timeSpan.minutes : 0 
+        }
         if(due !== undefined) {
-            let data = {
-                days: timeSpan.days !== undefined ? timeSpan.days : 0,
-                months: timeSpan.months !== undefined ? timeSpan.months : 0,
-                years: timeSpan.years !== undefined ? timeSpan.years : 0,
-                hours: timeSpan.hours !== undefined ? timeSpan.hours : 0,
-                minutes: timeSpan.minutes !== undefined ? timeSpan.minutes : 0 
-            }
             due.setDate(due.getDate() + data.days);
             due.setMonth(due.getMonth() + data.months);
             due.setYear(due.getFullYear() + data.years);
             due.setHours(due.getHours() + data.hours);
             due.setMinutes(due.getMinutes() + data.minutes);
-    
         }
     }
     setDescription (text) {
@@ -59,7 +58,7 @@ class Task {
 }
 let testDate = new Date('Aug 25, 2021 10:00');
 
-let test = new Task(1, 'ToShowThisTask', true, testDate)
+let test = new Task(1, 'ToShowThisTask', true)
 
 let time = {
     days: 2,
