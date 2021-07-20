@@ -58,14 +58,14 @@ class Task {
 }
 let testDate = new Date('Aug 25, 2021 10:00');
 
-let test = new Task(1, 'ToShowThisTask', true)
+let test = new Task(1, 'ToShowThisTask', true, testDate)
 
 let time = {
     days: 2,
-    months: 0,
-    years: 0,
-    hours: 5,
-    minutes: 30 
+    // months: 0,
+    // years: 0,
+    // hours: 5,
+    // minutes: 30 
 }
 
 console.log(test.toString())

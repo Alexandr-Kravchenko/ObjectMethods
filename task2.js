@@ -20,7 +20,7 @@ function go(pos, symbol) {
             stopGame();
         } else {
             let cell = gameField[pos[0]][[pos[1]]];
-            if(checkCell(cell)) {
+            if(isFree(cell)) {
                 gameField[pos[0]][[pos[1]]] = symbol;
             } else {
                 console.log('Клетка занята')
@@ -75,17 +75,13 @@ function checkVictory (field, symbol) {
 function checkField (field) {
     let result = [];
     for(let i = 0; i < field.length; i += 1) {
-        result.push(field[i].some((pos) => pos === ' '));
+        result.push(field[i].some(isFree));
     }
     return result.some((bool) => bool === true)
 }
 
-function checkCell(pos) {
-    if(pos === 'x' || pos === 'o') {
-        return false
-    } else {
-        return true
-    }    
+function isFree(pos) {
+    return pos === " "
 }
 
 function stopGame () {
@@ -95,6 +91,7 @@ function stopGame () {
 function main (){
     go([0,0],'x');
     go([0,0],'o');
+    go([1,0],'o');
     go([2,0],'x');
 
     go([0,1],'o');
