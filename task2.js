@@ -17,45 +17,54 @@ function drawField(field) {
 function go(pos, symbol) {
     if(play === true) {
         if(!checkField(gameField)) {
-            stopGame(play);
+            stopGame();
         } else {
             gameField[pos[0]][[pos[1]]] = symbol;
             console.log(drawField(gameField));
-            return checkVictory(gameField, symbol);
+            return console.log(checkVictory(gameField, symbol));
         }
     } else {
-        return `game is stoped`
+        console.log('Игра остановлена. Ход невозможен')
     }
 }
 
 function checkVictory (field, symbol) {
     if(field[0][0] === symbol && field[0][1] === symbol && field[0][2] === symbol){
-        return `${symbol} Winner!`
+        stopGame();
+        return `${symbol} Победил!` 
     }
     if(field[1][0] === symbol && field[1][1] === symbol && field[1][2] === symbol){
-        return `${symbol} Winner!`
+        stopGame();
+        return `${symbol} Победил!`
     }
     if(field[2][0] === symbol && field[2][1] === symbol && field[2][2] === symbol){
-        return `${symbol} Winner!`
+        stopGame();
+        return `${symbol} Победил!`
     }
 
     if(field[0][0] === symbol && field[1][0] === symbol && field[2][0] === symbol){
-        return `${symbol} Winner!`
+        stopGame();
+        return `${symbol} Победил!`
     }
     if(field[0][1] === symbol && field[1][1] === symbol && field[2][1] === symbol){
-        return `${symbol} Winner!`
+        stopGame();
+        return `${symbol} Победил!`
     }
     if(field[0][2] === symbol && field[1][2] === symbol && field[2][2] === symbol){
-        return `${symbol} Winner!`
+        stopGame();
+        return `${symbol} Победил!`
     }
 
     if(field[0][0] === symbol && field[1][1] === symbol && field[2][2] === symbol){
-        return `${symbol} Winner!`
+        stopGame();
+        return `${symbol} Победил!`
     }
     if(field[0][2] === symbol && field[1][1] === symbol && field[2][0] === symbol){
-        return `${symbol} Winner!`
+        stopGame();
+        return `${symbol} Победил!`
     }
-    return 'tie'
+    if(!checkField(gameField)) return 'Ничья'
+    return `Ходи!`
 }
 
 function checkField (field) {
@@ -66,24 +75,25 @@ function checkField (field) {
     return result.some((bool) => bool === true)
 }
 
-function stopGame (state) {
-    return state = false;
+function stopGame () {
+    play = false;
 }
 
 function main (){
     go([0,0],'x');
     go([1,0],'o');
-    go([2,0],'o');
+    go([2,0],'x');
 
     go([0,1],'o');
     go([1,1],'x');
-    go([2,1],'x');
+    go([2,1],'o');
 
     go([0,2],'x');
-    go([1,2],'x');
-    console.log(go([2,2],'o'))
-    console.log(go([2,2],'x'))
-    console.log(play)
+    go([1,2],'o');
+    go([2,2],'x');
+
+    go([1,1],'o');
+    go([1,1],'o');
 }
 
 main();
