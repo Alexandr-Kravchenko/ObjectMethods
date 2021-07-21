@@ -68,7 +68,10 @@ function checkVictory (field, symbol) {
         stopGame();
         return `${symbol} Победил!`
     }
-    if(!checkField(gameField)) return 'Ничья'
+    if(!checkField(gameField)) {
+        stopGame();
+        return 'Ничья';
+    }
     return `Ходи!`
 }
 
@@ -81,7 +84,7 @@ function checkField (field) {
 }
 
 function isFree(pos) {
-    return pos === " "
+    return pos === " ";
 }
 
 function stopGame () {
