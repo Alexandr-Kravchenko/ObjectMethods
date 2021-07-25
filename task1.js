@@ -9,7 +9,7 @@ class Task {
         this.dueDate = dueDate;
     }
     toggle () {
-       this.done = this.done === false ? true : false;
+       return this.done = this.done === false ? true : false;
     }
     toString () { 
         let done = this.done === true ? '[x]' : '[ ]';
@@ -51,11 +51,14 @@ class Task {
             due.setHours(due.getHours() + data.hours);
             due.setMinutes(due.getMinutes() + data.minutes);
         }
+        return due;
     }
     setDescription (text) {
         this.desc = text;
+        return this.desc;
     }
 }
+
 let testDate = new Date('Aug 25, 2021 10:00');
 
 let test = new Task(1, 'ToShowThisTask', true, testDate)
@@ -74,3 +77,9 @@ test.postPone(time);
 test.setDescription('NewDescription');
 
 console.log(test.toString())
+
+function testFunc(id,title,done,date) {
+    return new Task(id, title, done, date);
+}
+
+// export default testFunc;
